@@ -23,3 +23,32 @@ const slides = [
 ];
 
 console.log(slides);
+
+const {createApp} = Vue;
+
+createApp({
+    data (){
+        return {
+           slides: slides,
+            currentIndex: 0,
+        };
+    },
+
+    methods: {
+        nextImage() {
+            if (this.currentIndex < this.slides.length -1){
+                this.currentIndex++;
+            }else{
+                this.currentIndex = 0;
+            }
+        },
+
+        prevImage(){
+            if (this.currentIndex > 0){
+                this.currentIndex--;
+            }else {
+                this.currentIndex = this.slides.length -1;
+            }
+        }
+    }
+}).mount('#app');
