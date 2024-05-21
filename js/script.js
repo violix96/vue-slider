@@ -49,6 +49,10 @@ createApp({
             }else {
                 this.currentIndex = this.slides.length -1;
             }
+        },
+
+        selectImage(index){
+            this.currentIndex = index;
         }
     }
 }).mount('#app');
