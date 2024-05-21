@@ -53,6 +53,25 @@ createApp({
 
         selectImage(index){
             this.currentIndex = index;
-        }
+        },
+        
+        startAutoplay(){
+            this.autoplayInterval = setInterval(()=> {
+                this.nextImage();
+            },3000);
+        },
+
+        stopAutoplay() {
+            clearInterval(this.autoplayInterval);
+        },
+    },
+    
+    
+    mounted(){
+        this.startAutoplay();
+    },
+
+    beforeUnmount(){
+        this.stopAutoplay();
     }
 }).mount('#app');
