@@ -1,6 +1,6 @@
 const slides = [
-{
-    image: 'img/01.webp',
+    {
+        image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, {
@@ -24,54 +24,53 @@ const slides = [
 
 console.log(slides);
 
-const {createApp} = Vue;
+const { createApp } = Vue;
 
 createApp({
-    data (){
+    data() {
         return {
-           slides: slides,
+            slides: slides,
             currentIndex: 0,
+            currentInterval: null
         };
     },
 
     methods: {
         nextImage() {
-            if (this.currentIndex < this.slides.length -1){
+            if (this.currentIndex < this.slides.length - 1) {
                 this.currentIndex++;
-            }else{
+            } else {
                 this.currentIndex = 0;
             }
         },
 
-        prevImage(){
-            if (this.currentIndex > 0){
+        prevImage() {
+            if (this.currentIndex > 0) {
                 this.currentIndex--;
-            }else {
-                this.currentIndex = this.slides.length -1;
+            } else {
+                this.currentIndex = this.slides.length - 1;
             }
         },
 
-        selectImage(index){
+        selectImage(index) {
             this.currentIndex = index;
         },
-        
-        startAutoplay(){
-            this.autoplayInterval = setInterval(()=> {
-                this.nextImage();
-            },3000);
+
+        startAutoplay() {
+            this.currentInterval = setInterval(this.nextImage,3000);
         },
 
         stopAutoplay() {
-            clearInterval(this.autoplayInterval);
+            clearInterval(this.currentInterval);
         },
     },
-    
-    
-    mounted(){
+
+
+    mounted() {
         this.startAutoplay();
     },
 
-    beforeUnmount(){
+    beforeUnmount() {
         this.stopAutoplay();
     }
 }).mount('#app');
